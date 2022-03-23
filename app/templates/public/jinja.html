@@ -1,0 +1,60 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Jinja{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Jinja</h1>
+                <hr>
+
+                <h4>List index</h4>
+                <hr>
+                <p>{{ langs[0] }}</p>
+
+                <h4>Dictionary Value</h4>
+                <hr>
+                <p>{{ friends["Tony"] }}</p>
+
+                <h4>Class Attributes</h4>
+                <hr>
+                <p>{{ my_remote.description }}</p>
+
+                <h4>Class Methods</h4>
+                <hr>
+                <p>{{ my_remote.pull() }}</p>
+                
+                
+                
+                <h4>Accessing an object's value</h4>
+                <p>Hello {{my_name}}! </p>
+
+                <h4>Looping through iterable</h4>
+                <hr>
+
+                <strong class="d-block mb-3">Programming languages</strong>
+                <ul>
+                    {% for lang in langs %}
+                        <li>{{ loop.index0 }} - {{ lang }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Looping key/value pairs in a dict</h4>
+                <hr>
+
+                <strong class="d-block mb-3">Friends & ages</strong>
+                <ul>
+                    {% for name, age in friends.items() %}
+                    <li>{{ name }}: {{ age }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Calling functions</h4>
+                <hr>
+                <p>{{ repeat("Jinja is great! ", 3) }}</p>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

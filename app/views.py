@@ -4,6 +4,25 @@ from app import app
 from flask import render_template, request, redirect
 from datetime import datetime
 
+# users data
+users = {
+    "mitsuhiko": {
+        "name": "Armin Ronancher",
+        "bio": "Creator of Flask framework",
+        "twitter_handle": "@mitsuhiko"
+    },
+    "gvanrossum": {
+        "name": "Guido Van Rossum",
+        "bio": "Creator of Python programming",
+        "twitter_handle": "@gvanrossum"
+    },
+    "elonmusk": {
+        "name": "Elon Musk",
+        "bio": "technology entrepreneur, investor and engineer",
+        "twitter_handle": "@elonmusk"
+    }
+}
+
 @app.route("/")
 def index():
     return render_template("public/index.html")
@@ -37,6 +56,22 @@ def sign_up():
 
     return render_template("public/sign_up.html")
 
+
+@app.route("/profile/<username>")
+def profile(username):
+    user = None
+    if username in users:
+        user = users[username]
+
+    return render_template("public/profile.html", username=username, user=user)
+
+@app.route("/multiple/<foo>/<bar>/<baz>")
+def multiple(foo, bar, baz):
+    print(f"foo is {foo}")
+    print(f"bar is {bar}")
+    print(f"baz is {baz}")
+
+    return f"foo is {foo}, bar is {bar}, baz is {baz}"
 
 
 

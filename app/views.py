@@ -1,7 +1,9 @@
+import json
+import re
 from tkinter import N
 from turtle import color
 from app import app 
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, jsonify, make_response
 from datetime import datetime
 
 # users data
@@ -74,6 +76,25 @@ def multiple(foo, bar, baz):
     return f"foo is {foo}, bar is {bar}, baz is {baz}"
 
 
+
+@app.route("/json", methods=["POST"])
+def json_example():
+
+    if request.is_json:
+        # parse json into python dictionary
+        req = request.get_json()
+
+        response_body = {
+            "message": "JSON received!",
+            "sender": req.get("name")
+        }
+
+        res = make_response(jsonify(response_body), 200)
+
+        return res
+    
+    else:
+        return make_response(jsonify({"message": "Request body must be JSON"}), 400)
 
 
 

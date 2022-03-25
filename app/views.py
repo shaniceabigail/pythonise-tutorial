@@ -90,7 +90,7 @@ def create_entry():
     req = request.get_json()
     print(req)
 
-    res = make_response(jsonify({"message": "OK"}), 200)
+    res = make_response(jsonify(req), 200)
 
     return res
 

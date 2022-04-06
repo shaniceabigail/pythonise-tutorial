@@ -78,12 +78,9 @@ def multiple(foo, bar, baz):
     return f"foo is {foo}, bar is {bar}, baz is {baz}"
 
 # Guestbook
-
-
 @app.route("/guestbook")
 def guestbook():
     return render_template("public/guestbook.html")
-
 
 @app.route("/guestbook/create-entry", methods=["POST"])
 def create_entry():
@@ -93,6 +90,37 @@ def create_entry():
     res = make_response(jsonify(req), 200)
 
     return res
+
+
+# Query Strings
+@app.route("/query")
+def query():
+
+    if request.args:
+        args = request.args
+
+        serialized = ", ".join(f"{k}: {v}" for k, v in request.args.items())
+        return f"(Query) {serialized}", 200
+    
+    else:
+         return "No query string received", 200
+
+    # if "foo" in args:
+    #     foo = args["foo"]
+
+    # if "bar" in args:
+    #     bar = args.get("bar")
+    
+    # if "baz" in args:
+    #     baz = args["baz"]
+
+    # if "title" in request.args:
+    #     title = request.args.get("title")
+    
+    # print(foo, bar, baz, title)
+
+   
+
 
 
 # JSON example

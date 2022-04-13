@@ -103,7 +103,7 @@ def query():
         return f"(Query) {serialized}", 200
     
     else:
-         return "No query string received", 200
+        return "No query string received", 200
 
     # if "foo" in args:
     #     foo = args["foo"]
@@ -119,7 +119,11 @@ def query():
     
     # print(foo, bar, baz, title)
 
-   
+@app.route("/config")
+def config():
+    print(app.config)
+    return "no return"
+
 
 
 
